@@ -26,7 +26,7 @@ jobs:
         
       - name: Login to OpenShift
         run: |
-          oc login https://93.71.199.191:8443 --token=${{ secrets.OPENSHIFT_TOKEN }} --insecure-skip-tls-verify=true
+          oc login http://93.71.199.191:8443 --token=${{ secrets.OPENSHIFT_TOKEN }} --insecure-skip-tls-verify=true
 
       - name: Initialize Terraform
         run: terraform init
