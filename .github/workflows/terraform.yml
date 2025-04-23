@@ -20,13 +20,13 @@ jobs:
 
       - name: Install OpenShift CLI
         run: |
-              curl -LO https://mirror.openshift.com/pub/openshift-v4/clients/oc/latest/linux/oc.tar.gz --insecure-skip-tls-verify=true
+              curl -LO https://mirror.openshift.com/pub/openshift-v4/clients/oc/latest/linux/oc.tar.gz 
               tar -xvf oc.tar.gz
               sudo mv oc /usr/local/bin/
         
       - name: Login to OpenShift
         run: |
-          oc login https://93.71.199.191:8443 --token=${{ secrets.OPENSHIFT_TOKEN }}
+          oc login https://93.71.199.191:8443 --token=${{ secrets.OPENSHIFT_TOKEN }}  --insecure-skip-tls-verify=true
 
       - name: Initialize Terraform
         run: terraform init
