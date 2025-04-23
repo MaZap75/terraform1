@@ -20,7 +20,7 @@ jobs:
 
       - name: Login to OpenShift
         run: |
-          oc login https://192.168.99.103:8443/console --token=${{ secrets.OPENSHIFT_TOKEN }}
+          oc login http://93.71.199.91:8443/console --token=${{ secrets.OPENSHIFT_TOKEN }}
 
       - name: Initialize Terraform
         run: terraform init
