@@ -11,7 +11,7 @@ resource "kubernetes_pod" "example_pod" {
   spec {
     container {
       name  = "container-by-terraform"
-      image = "httpd:latest"  # Immagine pubblica da Docker Hub
+      image = "nginx:latest"  # Immagine pubblica da Docker Hub
       port {
         container_port = 80
       }
