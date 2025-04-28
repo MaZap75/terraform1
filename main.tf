@@ -16,5 +16,5 @@ resource "kubernetes_pod" "example_pod" {
         container_port = 80
       }
     }
-  }
+  } 
 }
