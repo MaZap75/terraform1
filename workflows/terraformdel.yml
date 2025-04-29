@@ -1,0 +1,34 @@
+name: Terraform OpenShift Deployment
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v2
+        with:
+          terraform_version: 1.4.0
+
+      - name: Install OpenShift CLI
+        run: |
+              curl -LO https://mirror.openshift.com/pub/openshift-v4/clients/oc/latest/linux/oc.tar.gz 
+              tar -xvf oc.tar.gz
+              sudo mv oc /usr/local/bin/
+        
+      - name: Login to OpenShift
+        run: |
+          oc login https://5.95.30.209:8443   --token=${{ secrets.OPENSHIFT_TOKEN }}  --insecure-skip-tls-verify=true
+
+      - name: Initialize Terraform
+        run: terraform destroy -auto-approve
+
+    
