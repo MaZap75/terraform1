@@ -29,6 +29,9 @@ jobs:
           oc login https://5.95.30.209:8443   --token=${{ secrets.OPENSHIFT_TOKEN }}  --insecure-skip-tls-verify=true
 
       - name: Initialize Terraform
-        run: terraform destroy -auto-approve
+        run: terraform destroy init
 
+      -name: Terraform apply
+       run: terraform apply -auto-approve
+ 
     
