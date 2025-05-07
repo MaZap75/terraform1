@@ -1,4 +1,4 @@
-#########Create pod in Opnehshift by Terraform using GitHubAction
+#########Create pod in Openshift by Terraform using GitHubAction
 create security token to connect to openshift
 and
 modify terraform.yml with correct api openshift url.
