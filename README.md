@@ -1,6 +1,12 @@
-#########Create pod in Openshift by Terraform using GitHubAction
-create security token to connect to openshift
-and
-modify terraform.yml with correct api openshift url.
-#######main.tf
-specify the spec of pod:Pod name, project, container's port and more specs.
+# Create pod in Openshift by Terraform using GitHub Action
+
+## Passaggi principali:
+1. **Creare un security token** per connettersi a OpenShift.
+2. **Modificare `terraform.yml`** con l'URL corretto dell'API OpenShift.
+
+## `main.tf`
+Definisci la configurazione del Pod specificando:
+- **Nome del Pod**
+- **Progetto**
+- **Porta del container**
+- **Altre specifiche**
