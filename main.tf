@@ -37,24 +37,5 @@ resource "kubernetes_service" "example_service" {
   }
 }
 
-# Creazione della Route in OpenShift
-resource "kubernetes_manifest" "example_route" {
-  manifest = {
-    apiVersion = "route.openshift.io/v1"
-    kind       = "Route"
-    metadata = {
-      name      = "my-app-route"
-      namespace = "test"
-    }
-    spec = {
-      to = {
-        kind = "Service"
-        name = kubernetes_service.example_service.metadata[0].name
-      }
-      port = {
-        targetPort = "80"
-      }
-      path = "/"
-    }
-  }
-}
+
+
