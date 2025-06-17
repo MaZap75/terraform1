@@ -11,10 +11,50 @@ resource "kubernetes_pod" "example_pod" {
   spec {
     container {
       name  = "container-by-terraform"
-      image = "docker.io/centos/httpd-24-centos7@sha256:001ec5d1b463d8d62c87b11ef9ca64603e6dd2eb88edadcb4f70f1c593aa83af"  # Immagine pubblica da Docker Hub digest
+      image = "docker.io/centos/httpd-24-centos7@sha256:001ec5d1b463d8d62c87b11ef9ca64603e6dd2eb88edadcb4f70f1c593aa83af"
       port {
         container_port = 80
       }
     }  
   } 
+}
+
+# Creazione del Service per il pod
+resource "kubernetes_service" "example_service" {
+  metadata {
+    name      = "my-app-service"
+    namespace = "test"
+  }
+  spec {
+    selector = {
+      name = "my-app-pod-git-17-06-2025"
+    }
+    port {
+      port        = 80
+      target_port = 80
+    }
+    type = "ClusterIP" # Cambia in "NodePort" o "LoadBalancer" se necessario
+  }
+}
+
+# Creazione della Route in OpenShift
+resource "kubernetes_manifest" "example_route" {
+  manifest = {
+    apiVersion = "route.openshift.io/v1"
+    kind       = "Route"
+    metadata = {
+      name      = "my-app-route"
+      namespace = "test"
+    }
+    spec = {
+      to = {
+        kind = "Service"
+        name = kubernetes_service.example_service.metadata[0].name
+      }
+      port = {
+        targetPort = "80"
+      }
+      path = "/"
+    }
+  }
 }
