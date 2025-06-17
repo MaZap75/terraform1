@@ -13,7 +13,7 @@ resource "kubernetes_pod" "example_pod" {
       name  = "container-by-terraform"
       image = "docker.io/centos/httpd-24-centos7@sha256:001ec5d1b463d8d62c87b11ef9ca64603e6dd2eb88edadcb4f70f1c593aa83af"
       port {
-        container_port = 80
+        container_port = 8080
       }
     }  
   } 
@@ -30,8 +30,8 @@ resource "kubernetes_service" "example_service" {
       name = "my-app-pod-git-17-06-2025"
     }
     port {
-      port        = 80
-      target_port = 80
+      port        = 8080
+      target_port = 8080
     }
     type = "ClusterIP" # Cambia in "NodePort" o "LoadBalancer" se necessario
   }
