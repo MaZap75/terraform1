@@ -4,7 +4,7 @@ provider "kubernetes" {
 
 resource "kubernetes_pod" "example_pod" {
   metadata {
-    name      = "my-app-pod-git"
+    name      = "my-app-pod-git-17-06-2025"
     namespace = "test"
   }
 
